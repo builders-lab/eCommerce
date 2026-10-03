@@ -1,2 +1,2 @@
-# eCommerce
-A FullStack Ecommerce Application
+# OmniCart — HTML, CSS and JavaScript mini project
+

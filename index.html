@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniCart | Everyday finds</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement">
+    <span>Good finds. Great prices. Every day.</span>
+    <span>Free delivery on orders over ₹999</span>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="index.html" class="logo">omni<span>cart</span></a>
+
+    <form class="search-bar" action="#" method="get">
+      <input type="search" name="q" placeholder="Search for something you'll love…">
+      <button type="submit">Search</button>
+    </form>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart <span class="cart-count">0</span></a>
+      <a href="login.html">Sign in</a>
+    </nav>
+  </header>
+
+  <!-- Category Navigation -->
+  <nav class="categories">
+    <a href="index.html" class="active">All products</a>
+    <a href="#">Electronics</a>
+    <a href="#">Fashion</a>
+    <a href="#">Home &amp; Living</a>
+    <a href="#">Accessories</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">THE EVERYDAY EDIT / 2026</div>
+      <h1>Your next great find<br>starts here<span>.</span></h1>
+      <p>Thoughtful essentials. Standout finds. All in one cart.</p>
+      <div>
+        <a href="#products" class="btn btn-primary">Explore the collection</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/photo-1505740420928-5e560c06d30e.jpg" alt="Black headphones on a yellow background">
+    </div>
+  </section>
+
+  <!-- Benefits Strip -->
+  <div class="benefits">
+    <span><strong>↗ Free delivery</strong><small>on orders ₹999+</small></span>
+    <span><strong>↺ Easy returns</strong><small>within 7 days</small></span>
+    <span><strong>✓ Simple checkout</strong><small>fast and secure</small></span>
+    <span><strong>◇ Quality picks</strong><small>chosen with care</small></span>
+  </div>
+
+  <!-- Products Section -->
+  <div class="section-title">
+    <div class="eyebrow">FIND YOUR EVERYDAY FAVORITES</div>
+    <h2 id="products">Discover something good</h2>
+  </div>
+
+  <div class="products">
+
+    <!-- Product 1: Headphones -->
+    <article class="product-card">
+      <img src="images/photo-1505740420928-5e560c06d30e.jpg" alt="Studio wireless headphones">
+      <div class="product-info">
+        <div class="product-brand">SONORA</div>
+        <div class="product-name">Studio wireless headphones</div>
+        <div class="product-rating"><span class="star">★</span> 4.8 · Electronics</div>
+        <div class="product-price">
+          <div>
+            <strong>₹3,499</strong>
+            <del>₹5,999</del>
+            <small>42% off</small>
+          </div>
+          <a href="#" class="btn btn-outline">+ Add</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 2: Sneakers -->
+    <article class="product-card">
+      <img src="images/photo-1577982886439-c25dc08b0c01.jpg" alt="Everyday leather sneakers">
+      <div class="product-info">
+        <div class="product-brand">OFFSCRIPT</div>
+        <div class="product-name">Everyday leather sneakers</div>
+        <div class="product-rating"><span class="star">★</span> 4.6 · Fashion</div>
+        <div class="product-price">
+          <div>
+            <strong>₹2,299</strong>
+            <del>₹3,999</del>
+            <small>43% off</small>
+          </div>
+          <a href="#" class="btn btn-outline">+ Add</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 3: Backpack -->
+    <article class="product-card">
+      <img src="images/photo-1553062407-98eeb64c6a62.jpg" alt="The everyday backpack">
+      <div class="product-info">
+        <div class="product-brand">FIELDWORK</div>
+        <div class="product-name">The everyday backpack</div>
+        <div class="product-rating"><span class="star">★</span> 4.7 · Accessories</div>
+        <div class="product-price">
+          <div>
+            <strong>₹1,799</strong>
+            <del>₹2,499</del>
+            <small>28% off</small>
+          </div>
+          <a href="#" class="btn btn-outline">+ Add</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 4: Watch -->
+    <article class="product-card">
+      <img src="images/photo-1594619231897-7609cd81cdbe.jpg" alt="Classic leather watch">
+      <div class="product-info">
+        <div class="product-brand">MERIDIAN</div>
+        <div class="product-name">Classic leather watch</div>
+        <div class="product-rating"><span class="star">★</span> 4.9 · Accessories</div>
+        <div class="product-price">
+          <div>
+            <strong>₹4,999</strong>
+            <del>₹6,999</del>
+            <small>29% off</small>
+          </div>
+          <a href="#" class="btn btn-outline">+ Add</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 5: Lamp -->
+    <article class="product-card">
+      <img src="images/photo-1740204245792-374791da9bf0.jpg" alt="Brass reading lamp">
+      <div class="product-info">
+        <div class="product-brand">FORM &amp; HOME</div>
+        <div class="product-name">Brass reading lamp</div>
+        <div class="product-rating"><span class="star">★</span> 4.5 · Home &amp; Living</div>
+        <div class="product-price">
+          <div>
+            <strong>₹2,799</strong>
+            <del>₹3,499</del>
+            <small>20% off</small>
+          </div>
+          <a href="#" class="btn btn-outline">+ Add</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 6: Camera -->
+    <article class="product-card">
+      <img src="images/photo-1700825172290-18cc42b2ef65.jpg" alt="Mirrorless camera kit">
+      <div class="product-info">
+        <div class="product-brand">FOCAL</div>
+        <div class="product-name">Mirrorless camera kit</div>
+        <div class="product-rating"><span class="star">★</span> 4.8 · Electronics</div>
+        <div class="product-price">
+          <div>
+            <strong>₹42,999</strong>
+            <del>₹49,999</del>
+            <small>14% off</small>
+          </div>
+          <a href="#" class="btn btn-outline">+ Add</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="logo">omni<span>cart</span></div>
+    <p>A better everyday, one find at a time.</p>
+    <span>College project · No real payments or orders</span>
+  </footer>
+
+</body>
+</html>
