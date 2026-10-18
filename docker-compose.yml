@@ -1,7 +1,5 @@
-# One-command local stack: docker compose up --build
-#
-# Every value has a working default so the stack starts with no setup.
-# Override any of them in a .env file next to this file.
+# Local commerce stack
+# Start with: docker compose up --build -d
 
 name: commerce-platform
 
@@ -13,13 +11,12 @@ services:
       MYSQL_DATABASE: ecommerce_db
     volumes:
       - mysql-data:/var/lib/mysql
-      # Runs only on first initialisation of an empty data directory, so this
-      # creates the schema and seed data exactly once.
       - ./DatabaseInit.sql:/docker-entrypoint-initdb.d/01-schema-and-seed.sql:ro
-    ports:
-      - "${MYSQL_PORT:-3306}:3306"
+    # No host port mapping: the backend connects over Docker's internal network.
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      test:
+        - CMD-SHELL
+        - 'mysqladmin ping -h 127.0.0.1 -uroot -p"$$MYSQL_ROOT_PASSWORD" --silent'
       interval: 5s
       timeout: 5s
       retries: 30
@@ -28,10 +25,13 @@ services:
 
   redis:
     image: redis:7-alpine
-    # Cache-only tier, so persistence is deliberately off.
-    command: ["redis-server", "--save", "", "--appendonly", "no"]
-    ports:
-      - "${REDIS_PORT:-6379}:6379"
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+    # Redis is only used internally by the backend.
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -44,46 +44,58 @@ services:
       context: ./backend-services
     environment:
       APP_JWT_SECRET: ${APP_JWT_SECRET:-local-development-only-jwt-secret-change-me}
+
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/ecommerce_db
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD:-admin}
+
       SPRING_DATA_REDIS_HOST: redis
       SPRING_DATA_REDIS_PORT: 6379
+
       APP_CACHE_DEFAULT_TTL_MINUTES: ${APP_CACHE_DEFAULT_TTL_MINUTES:-10}
       APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS:-http://localhost:8080,http://localhost:5173}
-      # Local demo gateway so checkout works without Stripe/Razorpay credentials.
+
       APP_PAYMENT_GATEWAY: ${APP_PAYMENT_GATEWAY:-loadtest}
       APP_PAYMENT_DEFAULT_CURRENCY: usd
       APP_LOADTEST_PAYMENT_WEBHOOK_SECRET: ${APP_LOADTEST_PAYMENT_WEBHOOK_SECRET:-loadtest-secret}
       APP_LOADTEST_PAYMENT_CHECKOUT_BASE_URL: ${FRONTEND_URL:-http://localhost:8080}/checkout/loadtest
+
       APP_MEDIA_UPLOAD_DIR: /var/www/imageResource/
       APP_MEDIA_RESOURCE_LOCATION: file:/var/www/imageResource/
       APP_MEDIA_PUBLIC_BASE_URL: ${FRONTEND_URL:-http://localhost:8080}/images/
+
     volumes:
       - image-data:/var/www/imageResource
+
     ports:
-      - "${BACKEND_PORT:-8081}:8080"
+      - "127.0.0.1:${BACKEND_PORT:-8081}:8080"
+
     depends_on:
       mysql:
         condition: service_healthy
       redis:
         condition: service_healthy
+
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 30
       start_period: 40s
+
     restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
+
     ports:
-      - "${FRONTEND_PORT:-8080}:80"
+      - "127.0.0.1:${FRONTEND_PORT:-8080}:80"
+
     depends_on:
       backend:
         condition: service_healthy
+
     restart: unless-stopped
 
 volumes:
