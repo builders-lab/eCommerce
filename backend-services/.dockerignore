@@ -1,0 +1,9 @@
+target/
+build/
+.idea/
+*.iml
+
+# Never bake local secrets into the image; compose injects env vars instead.
+secrets.properties
+
+*.log

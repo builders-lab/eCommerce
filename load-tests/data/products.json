@@ -1,0 +1,12 @@
+[
+  { "id": 1, "category": "Electronics" },
+  { "id": 2, "category": "Electronics" },
+  { "id": 3, "category": "Accessories" },
+  { "id": 4, "category": "Electronics" },
+  { "id": 5, "category": "Accessories" },
+  { "id": 6, "category": "Footwear" },
+  { "id": 7, "category": "Furniture" },
+  { "id": 8, "category": "Bags" },
+  { "id": 9, "category": "Accessories" },
+  { "id": 10, "category": "Electronics" }
+]
